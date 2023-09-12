@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="../img/iconos/dollar.png" alt="">
+    <!-- Precio del producto -->
+    <div class="col-xs-3 ingresoPrecio" style="padding-left:0px">
+        <div class="input-group">
+            <span class="input-group-addon productN" id="${numProd}">
+                <i data-original="ion ion-social-usd" class="ion ion-social-usd"></i>
+            </span>
+            <input type="text" class="form-control nuevoPrecioProducto" onchange="cambios()" precioreal="${precio}"
+                name="nuevoPrecioProducto" value="${precio}" required>
+        </div>
+    </div>
+</body>
+
+</html>
