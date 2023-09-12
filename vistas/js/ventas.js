@@ -108,13 +108,12 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
 
 			var pesoArgentino = `
 			<span class="input-group-addon productN">
-			  <span class="material-symbols-outlined">attach_money</span>
+				<i class="ion ion-social-usd"></i>
 			</span>
 			`
 			var dolarCom = `
 			<span class="input-group-addon productN">
-			  <strong>USD</strong>
-			  <span class="material-symbols-outlined" style="font-size: 1.8rem">monetization_on</span>
+				<strong>U$S</strong>
 			</span>
 			`
 			var euroCom = `
@@ -140,9 +139,9 @@ $(".tablaVentas tbody").on("click", "button.agregarProducto", function () {
 
 			var contenidoHTML
 
-			if(moneda == null){
+			if (moneda == null) {
 				contenidoHTML = completarHTML(pesoArgentino, idProducto, descripcion, stock, precio)
-			}else{
+			} else {
 				if (moneda == 'ARG') {
 					contenidoHTML = completarHTML(pesoArgentino, idProducto, descripcion, stock, precio)
 				}
@@ -654,9 +653,14 @@ $("#nuevoTotalVenta").number(true, 2);
 SELECCIONAR MÉTODO DE PAGO
 =============================================*/
 
-$("#nuevoMetodoPago").change(function () {
+
+$("#nuevoMetodoPago").on('change', function () {
 
 	var metodo = $(this).val();
+
+
+
+
 
 	if (metodo == "Efectivo") {
 
@@ -664,36 +668,46 @@ $("#nuevoMetodoPago").change(function () {
 
 		$(this).parent().parent().addClass("col-xs-4");
 
-		$(this).parent().parent().parent().children(".cajasMetodoPago").html(
+		var moneda = $('#monedaCambio').val()
 
-			'<div class="col-xs-4">' +
+		var pesoARG = `<i class="ion ion-social-usd"></i>`
+		var dolar = `<strong>U$S</strong>`
+		var euro = `<span class="material-symbols-outlined" style="font-size: 1.8rem">euro_symbol</span>`
+		var rupia = `<span class="material-symbols-outlined" style="font-size: 1.8rem">currency_ruble</span>`
+		var yuan = `<span class="material-symbols-outlined" style="font-size: 1.8rem">currency_yuan</span>`
+		var yen = `<span class="material-symbols-outlined" style="font-size: 1.8rem">currency_yen</span>`
 
-			'<div class="input-group">' +
+		var contenidoHTML
 
-			'<span class="input-group-addon"><i data-original="ion ion-social-usd" class="ion ion-social-usd"></i></span>' +
+		if (moneda == null) {
+			contenidoHTML = completarHTMLEfectivo(pesoARG)
+		} else {
+			if (moneda == 'ARG') {
+				contenidoHTML = completarHTMLEfectivo(pesoARG)
+			}
+			if (moneda == 'USD') {
+				contenidoHTML = completarHTMLEfectivo(dolar)
+			}
+			if (moneda == 'EUR') {
+				contenidoHTML = completarHTMLEfectivo(euro)
+			}
+			if (moneda == 'JPY') {
+				contenidoHTML = completarHTMLEfectivo(yen)
+			}
+			if (moneda == 'CNY') {
+				contenidoHTML = completarHTMLEfectivo(yuan)
+			}
+			if (moneda == 'RUB') {
+				contenidoHTML = completarHTMLEfectivo(rupia)
+			}
+		}
 
-			'<input type="text" class="form-control" id="nuevoValorEfectivo" placeholder="000000" required>' +
+		console.log(contenidoHTML)
 
-			'</div>' +
 
-			'</div>' +
-
-			'<div class="col-xs-4" id="capturarCambioEfectivo" style="padding-left:0px">' +
-
-			'<div class="input-group">' +
-
-			'<span class="input-group-addon"><i data-original="ion ion-social-usd" class="ion ion-social-usd"></i></span>' +
-
-			'<input type="text" class="form-control" id="nuevoCambioEfectivo" placeholder="000000" readonly required>' +
-
-			'</div>' +
-
-			'</div>'
-
-		)
+		$(this).parent().parent().parent().children(".cajasMetodoPago").html(contenidoHTML)
 
 		// Agregar formato al precio
-
 		$('#nuevoValorEfectivo').number(true, 2);
 		$('#nuevoCambioEfectivo').number(true, 2);
 
@@ -726,6 +740,28 @@ $("#nuevoMetodoPago").change(function () {
 
 
 })
+
+function completarHTMLEfectivo(codigo) {
+	var html = `
+	<div class="col-xs-4">
+		<div class="input-group">
+			<span class="input-group-addon" id="pagoEfectivo">
+				${codigo}
+			</span>
+			<input type="text" class="form-control" id="nuevoValorEfectivo"placeholder="000000" required="">
+		</div>
+	</div>
+	<div class="col-xs-4" style="padding-left:0px">
+		<div class="input-group">
+			<span class="input-group-addon" id="descuentoPago">
+				${codigo}
+			</span>
+			<input type="text" class="form-control" id="nuevoCambioEfectivo" placeholder="000000" readonly="" required="">
+		</div>
+	</div>
+	`
+	return html;
+}
 
 /*=============================================
 CAMBIO EN EFECTIVO

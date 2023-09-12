@@ -182,63 +182,40 @@ if ($_SESSION["perfil"] == "Especial") {
                   ======================================-->
 
                   <div class="col-xs-8 pull-right">
-
                     <table class="table">
-
                       <thead>
-
                         <tr>
                           <th>Impuesto</th>
                           <th>Total</th>
                         </tr>
-
                       </thead>
 
                       <tbody>
-
                         <tr>
-
                           <td style="width: 50%">
-
                             <div class="input-group">
-
                               <input type="number" class="form-control input-lg " min="0" id="nuevoImpuestoVenta"
                                 name="nuevoImpuestoVenta" placeholder="0" required>
-
                               <input type="hidden" name="nuevoPrecioImpuesto" id="nuevoPrecioImpuesto" required>
-
                               <input type="hidden" name="nuevoPrecioNeto" id="nuevoPrecioNeto" required>
-
                               <span class="input-group-addon productN"><i class="fa fa-percent"></i></span>
-
                             </div>
-
                           </td>
 
                           <td style="width: 50%">
-
-                            <div class="input-group" id="containerPrecio1">
-
-                              <span class="input-group-addon productN efectivo"><i
-                                  class="ion ion-social-usd"></i></span>
-
+                            <div class="input-group">
+                              <span class="input-group-addon" id="monedaTotal">
+                                <i class="ion ion-social-usd"></i>
+                              </span>
                               <input type="text" class="form-control input-lg" id="nuevoTotalVenta"
                                 name="nuevoTotalVenta" total="" placeholder="00000" readonly required>
-
                               <input type="hidden" name="totalVenta" id="totalVenta">
-
-
                             </div>
-
                           </td>
-
                         </tr>
-
                       </tbody>
-
                     </table>
                   </div>
-
                 </div>
 
                 <hr>
@@ -251,7 +228,7 @@ if ($_SESSION["perfil"] == "Especial") {
                   <div class="col-xs-6" style="padding-right:0px">
                     <div class="input-group">
                       <select class="form-control" id="nuevoMetodoPago" name="nuevoMetodoPago" required>
-                        <option value="">Seleccione método de pago</option>
+                        <option disabled selected>Seleccione método de pago</option>
                         <option value="Efectivo">Efectivo</option>
                         <option value="TC">Tarjeta Crédito</option>
                         <option value="TD">Tarjeta Débito</option>
@@ -261,9 +238,7 @@ if ($_SESSION["perfil"] == "Especial") {
                   <div class="cajasMetodoPago"></div>
                   <input type="hidden" id="listaMetodoPago" name="listaMetodoPago">
                 </div>
-
                 <br>
-
               </div>
 
             </div>
@@ -286,7 +261,6 @@ if ($_SESSION["perfil"] == "Especial") {
             </div>
 
             <div class="box-footer">
-
               <button type="submit" class="btn btn-primary pull-right">Guardar venta</button>
             </div>
 
@@ -520,23 +494,29 @@ MODAL AGREGAR CLIENTE
     }
   }
 
-
   function remplazarMoneda() {
     var moneda = $('#monedaCambio').val()
     //alert("mensaje para reemplazar moneda por "+ moneda)
     var ContainerPrices = $("#ContainerPrices").find(".productN")
-    var monedasOtras1 = $("#containerPrecio1").find(".efectivo")
-    var monedasOtras2 = $("#containerPrecio2").find(".efectivo")
+    var monedaTotal = $("#monedaTotal")
+    var monedaEfectivo1 = $("#pagoEfectivo")
+    var monedaEfectivo2 = $("#descuentoPago")
 
-    var pesoArgentino = `
+    var pesoARG = `<i class="ion ion-social-usd"></i>`
+    var dolar = `<strong>U$S</strong>`
+    var euro = `<span class="material-symbols-outlined" style="font-size: 1.8rem">euro_symbol</span>`
+    var rupia = `<span class="material-symbols-outlined" style="font-size: 1.8rem">currency_ruble</span>`
+    var yuan = `<span class="material-symbols-outlined" style="font-size: 1.8rem">currency_yuan</span>`
+    var yen = `<span class="material-symbols-outlined" style="font-size: 1.8rem">currency_yen</span>`
+
+    var pesoArgentinoCom = `
       <span class="input-group-addon productN">
-        <span class="material-symbols-outlined">attach_money</span>
+        <i class="ion ion-social-usd"></i>
       </span>
       `
     var dolarCom = `
       <span class="input-group-addon productN">
-        <strong>USD</strong>
-        <span class="material-symbols-outlined" style="font-size: 1.8rem">monetization_on</span>
+        <strong>U$S</strong>
       </span>
       `
     var euroCom = `
@@ -561,27 +541,41 @@ MODAL AGREGAR CLIENTE
       `
 
     if (moneda == 'ARG') {
-      ContainerPrices.replaceWith(pesoArgentino)
+      ContainerPrices.replaceWith(pesoArgentinoCom)
+      monedaTotal.html(pesoARG)
+      monedaEfectivo1.html(pesoARG)
+      monedaEfectivo2.html(pesoARG)
     }
     if (moneda == 'USD') {
       ContainerPrices.replaceWith(dolarCom)
+      monedaTotal.html(dolar)
+      monedaEfectivo1.html(dolar)
+      monedaEfectivo2.html(dolar)
     }
     if (moneda == 'EUR') {
       ContainerPrices.replaceWith(euroCom)
+      monedaTotal.html(euro)
+      monedaEfectivo1.html(euro)
+      monedaEfectivo2.html(euro)
     }
     if (moneda == 'JPY') {
       ContainerPrices.replaceWith(yenCom)
+      monedaTotal.html(yen)
+      monedaEfectivo1.html(yen)
+      monedaEfectivo2.html(yen)
     }
     if (moneda == 'CNY') {
       ContainerPrices.replaceWith(yuanCom)
+      monedaTotal.html(yuan)
+      monedaEfectivo1.html(yuan)
+      monedaEfectivo2.html(yuan)
     }
     if (moneda == 'RUB') {
       ContainerPrices.replaceWith(rupiaCom)
+      monedaTotal.html(rupia)
+      monedaEfectivo1.html(rupia)
+      monedaEfectivo2.html(rupia)
     }
-
-
-
-
   }
 
 
