@@ -98,7 +98,7 @@
 						<a href="ventas">
 							
 							<i class="fa fa-circle-o"></i>
-							<span>Administrar ventas</span>
+							<span>Administrar Presupuestos</span>
 
 						</a>
 
@@ -109,7 +109,7 @@
 						<a href="crear-venta">
 							
 							<i class="fa fa-circle-o"></i>
-							<span>Crear venta</span>
+							<span>Crear Presupuesto</span>
 
 						</a>
 
@@ -122,7 +122,7 @@
 						<a href="reportes">
 							
 							<i class="fa fa-circle-o"></i>
-							<span>Reporte de ventas</span>
+							<span>Reportes</span>
 
 						</a>
 

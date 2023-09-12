@@ -19,7 +19,7 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
     
     <h1>
       
-      Reportes de ventas
+    Reportes
     
     </h1>
 
@@ -27,7 +27,7 @@ if($_SESSION["perfil"] == "Especial" || $_SESSION["perfil"] == "Vendedor"){
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Reportes de ventas</li>
+      <li class="active">Reportes</li>
     
     </ol>
 

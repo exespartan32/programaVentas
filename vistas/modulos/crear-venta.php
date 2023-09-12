@@ -20,7 +20,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
     <h1>
 
-      Crear venta
+      Crear Presupuesto
 
     </h1>
 
@@ -28,7 +28,7 @@ if ($_SESSION["perfil"] == "Especial") {
 
       <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
 
-      <li class="active">Crear venta</li>
+      <li class="active"> Crear Presupuesto</li>
 
     </ol>
 

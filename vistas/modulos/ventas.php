@@ -29,7 +29,7 @@ if($xml){
     
     <h1>
       
-      Administrar ventas
+    Administrar Presupuestos
     
     </h1>
 
@@ -37,7 +37,7 @@ if($xml){
       
       <li><a href="inicio"><i class="fa fa-dashboard"></i> Inicio</a></li>
       
-      <li class="active">Administrar ventas</li>
+      <li class="active">Administrar Presupuestos</li>
     
     </ol>
 
